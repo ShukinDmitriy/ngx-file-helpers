@@ -6,23 +6,25 @@ import {
   HostListener,
   OnInit,
   Output,
-  Renderer2
+  Renderer2,
+  OnDestroy
 } from '@angular/core';
 
-import { ReadFile } from './read-file';
-import { ReadFileImpl } from './read-file-impl';
-import { ReadMode } from './read-mode.enum';
+import {ReadFile} from './read-file';
+import {ReadFileImpl} from './read-file-impl';
+import {ReadMode} from './read-mode.enum';
 
 @Directive({
   selector: '[ngxFilePicker]'
 })
-export class FilePickerDirective implements OnInit {
+export class FilePickerDirective implements OnInit, OnDestroy {
   @Input() public accept = '';
 
   @Input()
   get multiple() {
     return this._multiple;
   }
+
   set multiple(value: any) {
     this._multiple = coerceBooleanProperty(value);
   }
@@ -39,8 +41,10 @@ export class FilePickerDirective implements OnInit {
 
   private _multiple: boolean;
   private input: any;
+  private unsubscribe: Function;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(private el: ElementRef, private renderer: Renderer2) {
+  }
 
   public ngOnInit() {
     this.input = this.renderer.createElement('input');
@@ -54,16 +58,20 @@ export class FilePickerDirective implements OnInit {
       this.renderer.setAttribute(this.input, 'multiple', 'multiple');
     }
 
-    this.renderer.listen(this.input, 'change', (event: any) => {
+    this.unsubscribe = this.renderer.listen(this.input, 'change', (event: any) => {
       const files = Array.from<File>(event.target.files).filter(this.filter);
       const fileCount = files.length;
 
       this.readStart.emit(fileCount);
       Promise.all(
         files
-        .map(file => this.readFile(file))
+          .map(file => this.readFile(file))
       ).then(() => this.readEnd.emit(fileCount));
     });
+  }
+
+  public ngOnDestroy() {
+    this.unsubscribe();
   }
 
   public reset() {
