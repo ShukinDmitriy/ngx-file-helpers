@@ -1,6 +1,6 @@
 {
   "name": "ng-file-helpers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Angular File Helpers",
   "main": "./bundles/ngx-file-helpers.umd.js",
   "module": "./esm5/ngx-file-helpers.js",
@@ -49,7 +49,7 @@
     "rollup": "^0.66.2",
     "rxjs": "^6.3.3",
     "shx": "^0.3.2",
-    "typescript": "^3.0.3",
+    "typescript": ">=2.7.2 and <2.10.0",
     "uglify-js": "^3.4.9",
     "zone.js": "^0.8.26"
   }

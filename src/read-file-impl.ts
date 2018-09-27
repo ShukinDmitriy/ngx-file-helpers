@@ -3,7 +3,7 @@ import { ReadMode } from './read-mode.enum';
 
 export class ReadFileImpl implements ReadFile {
   get lastModifiedDate(): Date {
-    return this._underlyingFile.lastModifiedDate;
+    return new Date(this._underlyingFile.lastModified);
   }
 
   get name(): string {
