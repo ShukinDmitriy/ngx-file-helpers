@@ -21,7 +21,7 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
-    "flatModuleOutFile": "ngx-file-helpers.js",
-    "flatModuleId": "ngx-file-helpers"
+    "flatModuleOutFile": "ng-file-helpers.js",
+    "flatModuleId": "ng-file-helpers"
   }
 }

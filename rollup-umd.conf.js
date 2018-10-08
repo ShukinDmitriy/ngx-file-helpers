@@ -1,7 +1,7 @@
 export default {
-  input: './build/esm5/ngx-file-helpers.js',
+  input: './build/esm5/ng-file-helpers.js',
   output: {
-    file: './dist/bundles/ngx-file-helpers.umd.js',
+    file: './dist/bundles/ng-file-helpers.umd.js',
     name: 'ngxFilesHelpers',
     format: 'umd',
     globals: {

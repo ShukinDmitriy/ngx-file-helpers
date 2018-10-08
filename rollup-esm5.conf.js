@@ -1,7 +1,7 @@
 export default {
-  input: './build/esm5/ngx-file-helpers.js',
+  input: './build/esm5/ng-file-helpers.js',
   output: {
-    file: './dist/esm5/ngx-file-helpers.js',
+    file: './dist/esm5/ng-file-helpers.js',
     format: 'es',
     globals: {
       '@angular/core': 'ng.core',
